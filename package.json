@@ -1,22 +1,22 @@
 {
-  "name": "simplemde-theme-base",
+  "name": "simplemde-theme-dark",
   "version": "0.1.0",
-  "description": "The base theme for SimpleMDE, you can easily create your custom theme based on this.",
-  "main": "src/simplemde-theme-base.scss",
+  "description": "The dark theme for SimpleMDE.",
+  "main": "src/simplemde-theme-dark.scss",
   "scripts": {
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xcatliu/simplemde-theme-base.git"
+    "url": "git+https://github.com/xcatliu/simplemde-theme-dark.git"
   },
   "author": "xcatliu <xcatliu@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xcatliu/simplemde-theme-base/issues"
+    "url": "https://github.com/xcatliu/simplemde-theme-dark/issues"
   },
-  "homepage": "https://github.com/xcatliu/simplemde-theme-base#readme",
+  "homepage": "https://github.com/xcatliu/simplemde-theme-dark#readme",
   "dependencies": {
     "codemirror": "^5.22.0"
   },

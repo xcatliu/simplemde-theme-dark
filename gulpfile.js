@@ -50,8 +50,8 @@ gulp.task('build_copy', () => {
 
 gulp.task('build', [
   'clean:dist',
-  'build:simplemde-theme-base:sourcemaps',
-  'build:simplemde-theme-base:compressed',
+  'build:simplemde-theme-dark:sourcemaps',
+  'build:simplemde-theme-dark:compressed',
 ]);
 
 gulp.task('copy', [
@@ -63,13 +63,13 @@ gulp.task('clean:dist', () => {
   rimraf.sync(`${DIST_DIR}/*`);
 });
 
-gulp.task('build:simplemde-theme-base:compressed', ['build:simplemde-theme-base:sourcemaps'], () => gulp.src(`${DIST_DIR}/simplemde-theme-base.css`)
+gulp.task('build:simplemde-theme-dark:compressed', ['build:simplemde-theme-dark:sourcemaps'], () => gulp.src(`${DIST_DIR}/simplemde-theme-dark.css`)
   .pipe(insert.prepend(codemirrorCss))
   .pipe(cleanCSS())
-  .pipe(rename('simplemde-theme-base.min.css'))
+  .pipe(rename('simplemde-theme-dark.min.css'))
   .pipe(gulp.dest(DIST_DIR)));
 
-gulp.task('build:simplemde-theme-base:sourcemaps', () => gulp.src(`${SRC_DIR}/simplemde-theme-base.scss`)
+gulp.task('build:simplemde-theme-dark:sourcemaps', () => gulp.src(`${SRC_DIR}/simplemde-theme-dark.scss`)
   .pipe(sourcemaps.init())
   .pipe(sass().on('error', sass.logError))
   .pipe(postcss(postcssConfig))
