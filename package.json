@@ -1,11 +1,15 @@
 {
   "name": "simplemde-theme-dark",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "The dark theme for SimpleMDE.",
   "main": "src/simplemde-theme-dark.scss",
   "scripts": {
     "start": "gulp",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build_copy",
+    "lint": "stylelint src/**/*.scss --syntax scss && echo 'stylelint passed!\\n'",
+    "test": "npm run lint",
+    "preversion": "npm test",
+    "version": "npm run build && git add -A dist docs"
   },
   "repository": {
     "type": "git",
@@ -30,6 +34,8 @@
     "gulp-sass": "^3.0.0",
     "gulp-sourcemaps": "^1.9.1",
     "rimraf": "^2.5.4",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^1.2.2",
+    "stylelint": "^7.7.1",
+    "stylelint-config-standard": "^15.0.1"
   }
 }

@@ -1,5 +1,4 @@
 const gulp = require('gulp');
-const fs = require('fs');
 const path = require('path');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
@@ -10,9 +9,9 @@ const autoprefixer = require('autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const insert = require('gulp-insert');
 const runSequence = require('run-sequence');
+const pkg = require('./package.json');
 
-// Get codemirror.css content
-var codemirrorCss = fs.readFileSync(require.resolve('codemirror/lib/codemirror.css'), 'utf-8');
+const prependText = `/* SimpleMDE Theme Dark v${pkg.version} ${pkg.homepage} */\n\n`;
 
 const postcssConfig = [autoprefixer({ browsers: [
   'last 3 iOS versions',
@@ -50,8 +49,8 @@ gulp.task('build_copy', () => {
 
 gulp.task('build', [
   'clean:dist',
-  'build:simplemde-theme-dark:sourcemaps',
-  'build:simplemde-theme-dark:compressed',
+  'build:simplemde-theme-dark',
+  'build:simplemde-theme-dark:min',
 ]);
 
 gulp.task('copy', [
@@ -63,17 +62,19 @@ gulp.task('clean:dist', () => {
   rimraf.sync(`${DIST_DIR}/*`);
 });
 
-gulp.task('build:simplemde-theme-dark:compressed', ['build:simplemde-theme-dark:sourcemaps'], () => gulp.src(`${DIST_DIR}/simplemde-theme-dark.css`)
-  .pipe(insert.prepend(codemirrorCss))
+gulp.task('build:simplemde-theme-dark:min', ['build:simplemde-theme-dark'], () => gulp.src(`${DIST_DIR}/simplemde-theme-dark.css`)
+  .pipe(sourcemaps.init())
   .pipe(cleanCSS())
+  .pipe(insert.prepend(prependText))
   .pipe(rename('simplemde-theme-dark.min.css'))
+  .pipe(sourcemaps.write('./'))
   .pipe(gulp.dest(DIST_DIR)));
 
-gulp.task('build:simplemde-theme-dark:sourcemaps', () => gulp.src(`${SRC_DIR}/simplemde-theme-dark.scss`)
+gulp.task('build:simplemde-theme-dark', () => gulp.src(`${SRC_DIR}/simplemde-theme-dark.scss`)
   .pipe(sourcemaps.init())
   .pipe(sass().on('error', sass.logError))
   .pipe(postcss(postcssConfig))
-  .pipe(insert.prepend(codemirrorCss))
+  .pipe(insert.prepend(prependText))
   .pipe(sourcemaps.write('./'))
   .pipe(gulp.dest(DIST_DIR)));
 

@@ -5,6 +5,7 @@
 // Don't edit _variables.scss, edit _custom.scss instead
 @import 'variables';
 
+@import 'codemirror-origin';
 // Override some codemirror styles
 @import 'codemirror-override';
 
