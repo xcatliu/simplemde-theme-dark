@@ -1,5 +1,7 @@
 # SimpleMDE Theme Dark
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/xcatliu/simplemde-theme-dark.svg)](https://greenkeeper.io/)
+
 Forked from [SimpleMDE Theme Base](https://github.com/xcatliu/simplemde-theme-base).
 
 > The dark theme for [SimpleMDE](https://simplemde.com/).
